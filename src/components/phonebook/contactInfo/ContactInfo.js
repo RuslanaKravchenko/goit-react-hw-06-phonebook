@@ -46,5 +46,5 @@ const ContactInfo = ({ contactById }) => {
 export default ContactInfo;
 
 ContactInfo.propTypes = {
-  contact: PropTypes.object.isRequired,
+  contact: PropTypes.object,
 };

@@ -1,10 +1,6 @@
-import { HIDE_NOTICE_MESSAGE, SHOW_NOTICE_MESSAGE } from './noticeTypes';
+import { createAction } from '@reduxjs/toolkit';
 
-export const showNoticeMessage = message => ({
-  type: SHOW_NOTICE_MESSAGE,
-  payload: message,
-});
+const showNoticeMessage = createAction('notice/showNoticeMessage');
+const hideNoticeMessage = createAction('notice/hideNoticeMessage');
 
-export const hideNoticeMessage = () => ({
-  type: HIDE_NOTICE_MESSAGE,
-});
+export { showNoticeMessage, hideNoticeMessage };

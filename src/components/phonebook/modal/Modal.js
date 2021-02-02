@@ -8,9 +8,7 @@ import { hideModal } from '../../../redux/modal/modalActions';
 
 const Modal = ({ children, hideModal, isOpen }) => {
   const onHadleClick = () => {
-    setTimeout(() => {
-      hideModal();
-    }, 300);
+    hideModal();
   };
 
   return (

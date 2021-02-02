@@ -1,10 +1,6 @@
-import { SHOW_MODAL, HIDE_MODAL } from './modalTypes';
+import { createAction } from '@reduxjs/toolkit';
 
-export const showModal = content => ({
-  type: SHOW_MODAL,
-  payload: content,
-});
+const showModal = createAction('notice/showModal');
+const hideModal = createAction('notice/hideModal');
 
-export const hideModal = () => ({
-  type: HIDE_MODAL,
-});
+export { showModal, hideModal };

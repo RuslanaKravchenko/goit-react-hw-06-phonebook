@@ -1,39 +1,24 @@
-import {
-  ADD_NEW_CONTACT,
-  DELETE_CONTACT,
-  CONTACTS_FROM_LS,
-  SET_FILTER,
-  GET_CONTACT_BY_ID,
-  EDIT_CONTACT,
-} from './contactsTypes';
+import { createAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
-export const addNewContact = contact => ({
-  type: ADD_NEW_CONTACT,
-  payload: { ...contact, id: uuidv4() },
-});
+const addNewContact = createAction('contacts/addContact', contact => ({
+  payload: {
+    ...contact,
+    id: uuidv4(),
+  },
+}));
 
-export const deleteContact = id => ({
-  type: DELETE_CONTACT,
-  payload: id,
-});
+const deleteContact = createAction('contacts/deleteContact');
+const getContactsFromLS = createAction('contacts/contactsFromLS');
+const setFilter = createAction('contacts/setFilter');
+const getIdValue = createAction('contacts/getIdValue');
+const editContact = createAction('contacts/editContact');
 
-export const getContactsFromLS = contacts => ({
-  type: CONTACTS_FROM_LS,
-  payload: contacts,
-});
-
-export const setFilter = value => ({
-  type: SET_FILTER,
-  payload: value,
-});
-
-export const getIdValue = id => ({
-  type: GET_CONTACT_BY_ID,
-  payload: id,
-});
-
-export const editContact = contact => ({
-  type: EDIT_CONTACT,
-  payload: contact,
-});
+export {
+  addNewContact,
+  deleteContact,
+  getContactsFromLS,
+  setFilter,
+  getIdValue,
+  editContact,
+};
