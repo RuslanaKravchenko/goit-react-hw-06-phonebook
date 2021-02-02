@@ -79,7 +79,7 @@ const Phonebook = ({
       >
         <>
           <h2 className="contacts_title">Contacts</h2>
-          {contacts.length >= 1 && (
+          {contacts.length > 1 && (
             <CSSTransition
               in={true}
               appear={true}
@@ -93,17 +93,16 @@ const Phonebook = ({
         </>
       </CSSTransition>
 
-      {contacts.length > 0 && (
-        <CSSTransition
-          in={true}
-          appear={true}
-          timeout={550}
-          classNames="contactsList"
-          unmountOnExit
-        >
-          <ContactList />
-        </CSSTransition>
-      )}
+      <CSSTransition
+        in={true}
+        appear={true}
+        timeout={550}
+        classNames="contactsList"
+        unmountOnExit
+      >
+        <ContactList />
+      </CSSTransition>
+
       {contacts.length === 0 && (
         <CSSTransition
           in={true}

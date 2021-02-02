@@ -5,7 +5,6 @@ export const showNoticeMessage = message => ({
   payload: message,
 });
 
-export const hideNoticeMessage = message => ({
+export const hideNoticeMessage = () => ({
   type: HIDE_NOTICE_MESSAGE,
-  payload: message,
 });

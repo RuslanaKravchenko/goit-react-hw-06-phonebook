@@ -5,13 +5,25 @@ import ListItem from './ContactsListItemStyled';
 import {
   deleteContact,
   getIdValue,
+  setFilter,
 } from '../../../../redux/contacts/contactsActions';
 import { showModal } from '../../../../redux/modal/modalActions';
 
-const ContactListItem = ({ contact, deleteContact, showModal, getIdValue }) => {
+const ContactListItem = ({
+  contact,
+  deleteContact,
+  showModal,
+  getIdValue,
+  setFilter,
+  contacts,
+}) => {
   const onHandleDelete = e => {
     const { id } = e.currentTarget;
     deleteContact(id);
+
+    if (contacts.length < 2) {
+      setFilter('');
+    }
   };
 
   const openEditProfile = e => {
@@ -78,6 +90,18 @@ const ContactListItem = ({ contact, deleteContact, showModal, getIdValue }) => {
   );
 };
 
+const mapStateToProps = (state, ownProps) => {
+  const visibleContacts = state.phonebookContacts.contacts.filter(item =>
+    item.name
+      .toLowerCase()
+      .includes(state.phonebookContacts.filter.toLowerCase()),
+  );
+
+  return {
+    contacts: visibleContacts,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     deleteContact: id => {
@@ -89,13 +113,16 @@ const mapDispatchToProps = dispatch => {
     getIdValue: id => {
       dispatch(getIdValue(id));
     },
+    setFilter: value => {
+      dispatch(setFilter(value));
+    },
   };
 };
 
-export default connect(null, mapDispatchToProps)(ContactListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactListItem);
 
 ContactListItem.propTypes = {
-  contact: PropTypes.object.isRequired,
+  contact: PropTypes.object,
   deleteContact: PropTypes.func,
   showModal: PropTypes.func,
   getContactById: PropTypes.func,

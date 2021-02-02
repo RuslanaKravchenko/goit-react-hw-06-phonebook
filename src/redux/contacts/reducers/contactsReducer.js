@@ -17,7 +17,7 @@ const contactsReducer = (state = [], action) => {
       return state.filter(item => item.id !== action.payload);
 
     case CONTACTS_FROM_LS:
-      return action.payload;
+      return [...action.payload];
 
     case EDIT_CONTACT:
       return state.map(item =>

@@ -20,12 +20,13 @@ const ContactList = ({ contacts }) => {
 };
 
 const mapStateToProps = state => {
+  const visibleContacts = state.phonebookContacts.contacts.filter(item =>
+    item.name
+      .toLowerCase()
+      .includes(state.phonebookContacts.filter.toLowerCase()),
+  );
   return {
-    contacts: state.phonebookContacts.contacts.filter(item =>
-      item.name
-        .toLowerCase()
-        .includes(state.phonebookContacts.filter.toLowerCase()),
-    ),
+    contacts: visibleContacts,
   };
 };
 
